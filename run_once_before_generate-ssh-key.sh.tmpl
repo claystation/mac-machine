@@ -1,0 +1,47 @@
+#!/bin/bash
+set -euo pipefail
+
+KEY="$HOME/.ssh/id_ed25519"
+EMAIL={{ .git.personal.email | quote }}
+
+if [ -f "$KEY" ]; then
+  exit 0
+fi
+
+# Only prompt if running interactively (don't block automated apply).
+if [ ! -t 0 ]; then
+  echo "No SSH key at $KEY — skipping (not in an interactive shell)." >&2
+  echo "Run manually later: ssh-keygen -t ed25519 -C \"$EMAIL\"" >&2
+  exit 0
+fi
+
+echo
+echo "No SSH key found at $KEY."
+read -rp "Generate one now? [y/N] " answer
+if [[ ! "$answer" =~ ^[Yy]$ ]]; then
+  echo "Skipping. Generate manually with: ssh-keygen -t ed25519 -C \"$EMAIL\""
+  exit 0
+fi
+
+mkdir -p "$HOME/.ssh"
+chmod 700 "$HOME/.ssh"
+
+# Loop until user actually sets a passphrase. ssh-keygen handles the prompt
+# itself (more secure than passing -N "..." which exposes the passphrase in
+# `ps` output). Empty passphrase is rejected and the user retries.
+while true; do
+  ssh-keygen -t ed25519 -C "$EMAIL" -f "$KEY"
+  if ssh-keygen -y -P "" -f "$KEY" >/dev/null 2>&1; then
+    echo
+    echo "ERROR: Empty passphrase. SSH keys must be password-protected." >&2
+    echo "Removing key and retrying…" >&2
+    rm -f "$KEY" "$KEY.pub"
+    continue
+  fi
+  break
+done
+
+echo
+echo "Public key (add to GitHub at https://github.com/settings/keys):"
+echo
+cat "$KEY.pub"

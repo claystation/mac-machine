@@ -1,0 +1,24 @@
+# mise — replaces asdf. Runs `mise install` from the bootstrap script.
+# Per-version isolation for runtimes; declarative Go/etc. tools that get
+# (re)installed automatically when the runtime is upgraded.
+
+[tools]
+# Runtimes (versions migrated from .tool-versions)
+go        = "1.26.1"
+node      = "22.17.1"
+java      = "openjdk-25"
+maven     = "3.9.4"
+python    = "3.11.6"
+terraform = "1.8.1"
+groovy    = "4.0.27"
+yarn      = "latest"
+
+# Go tools — per-Go-version, reinstalled automatically on `go` bumps.
+# Prune anything you don't actually use.
+"go:github.com/go-delve/delve/cmd/dlv"     = "latest"
+"go:golang.org/x/tools/gopls"              = "latest"
+"go:github.com/haya14busa/goplay/cmd/goplay" = "latest"
+"go:github.com/cweill/gotests/gotests"     = "latest"
+"go:github.com/josharian/impl"             = "latest"
+"go:honnef.co/go/tools/cmd/staticcheck"    = "latest"
+"go:github.com/fatih/gomodifytags"         = "latest"

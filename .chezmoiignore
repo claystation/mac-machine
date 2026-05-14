@@ -1,0 +1,43 @@
+# Ephemeral / runtime state
+.bash_history
+.zsh_history
+.zsh_sessions
+.viminfo
+.lesshst
+
+# Cloned repos / package manager state — reinstalled by run_once_ scripts.
+# .oh-my-zsh itself is reinstalled by the run_once script; only the oxide
+# theme under custom/themes/ is tracked (don't `chezmoi add ~/.oh-my-zsh`).
+.config/nvim/lazy-lock.json
+.config/tmux/plugins
+
+# Secrets — never commit
+.env
+.ssh
+.gnupg
+.aws
+.config/gcloud
+.config/gh
+.config/github-copilot
+
+# Machine-local gitconfig overrides (private URL rewrites, etc.)
+.gitconfig.local
+
+# Editor backups
+**/*.bak
+**/*.backup
+.zshrc.backup
+
+# Nested git metadata (e.g. nvim is a clone of kickstart.nvim)
+**/.git
+**/.github
+**/.gitignore
+**/.stylua.toml
+
+# OS junk
+.DS_Store
+
+# Repo-only files (live in source state, never applied to ~/)
+README.md
+CLAUDE.md
+Brewfile

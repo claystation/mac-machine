@@ -1,0 +1,18 @@
+[user]
+{{- if .git.signingKey }}
+	signingkey = {{ .git.signingKey }}
+{{- end }}
+	name = {{ .git.personal.name }}
+	email = {{ .git.personal.email }}
+[pull]
+	rebase = true
+
+[includeIf "gitdir:~/projects/"]
+	path = ~/.gitconfig-nn
+[includeIf "gitdir:~/workspaces/"]
+	path = ~/.gitconfig-nn
+
+# Machine-local overrides (URL rewrites for private orgs, etc.) — gitignored,
+# never tracked by chezmoi. Git silently ignores the include if the file is missing.
+[include]
+	path = ~/.gitconfig.local

@@ -1,0 +1,6 @@
+# Personal env vars sourced by ~/.zshrc.
+# Copy this file to ~/.env on a new machine and fill in real values.
+# ~/.env itself is gitignored — never commit it.
+
+export GITHUB_PAT=
+export ANSIBLE_VAULT_PASSWORD_FILE=

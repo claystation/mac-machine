@@ -1,0 +1,16 @@
+{{- $personalEmail := promptStringOnce . "git.personal.email" "Personal git email" -}}
+{{- $personalName  := promptStringOnce . "git.personal.name"  "Personal git name" -}}
+{{- $workEmail     := promptStringOnce . "git.work.email"     "Work git email" -}}
+{{- $workName      := promptStringOnce . "git.work.name"      "Work git name" -}}
+{{- $signingKey    := promptStringOnce . "git.signingKey"     "GPG signing key ID (leave empty for none)" -}}
+
+[data.git]
+    signingKey = {{ $signingKey | quote }}
+
+[data.git.personal]
+    email = {{ $personalEmail | quote }}
+    name  = {{ $personalName  | quote }}
+
+[data.git.work]
+    email = {{ $workEmail | quote }}
+    name  = {{ $workName  | quote }}

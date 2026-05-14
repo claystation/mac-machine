@@ -1,0 +1,13 @@
+alias zshrc="vim ~/.zshrc && src ~/.zshrc"
+
+alias src=source
+
+alias vim=nvim
+
+alias ll="eza -l --icons"
+alias la="eza -al --icons"
+
+alias ccu="brew upgrade claude-code"
+
+alias gcauth="gcloud auth login --update-adc"
+

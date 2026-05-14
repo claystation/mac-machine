@@ -1,0 +1,10 @@
+#!/bin/bash
+set -euo pipefail
+
+# Re-runs whenever Brewfile changes (chezmoi inlines it via `include` below,
+# so the rendered script's hash changes when the Brewfile does).
+{{ if eq .chezmoi.os "darwin" -}}
+brew bundle --file=/dev/stdin <<'EOF'
+{{ include "Brewfile" }}
+EOF
+{{ end -}}
