@@ -7,7 +7,7 @@ alias vim=nvim
 alias ll="eza -l --icons"
 alias la="eza -al --icons"
 
-alias ccu="brew upgrade claude-code"
+alias ccu="claude update"
 
 alias gcauth="gcloud auth login --update-adc"
 
