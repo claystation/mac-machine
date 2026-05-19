@@ -36,6 +36,8 @@ macOS dotfiles managed with [chezmoi](https://chezmoi.io). Source state lives in
 7. `run_once_after_install-claude.sh`
 8. `run_once_after_install-tpm.sh`
 
+The repo clones over HTTPS (it's public), so the SSH key script can stay in the chain — it just generates a key for later use (pushing back here, private repos) rather than gating the clone.
+
 ## Tooling preferences (captured during setup — change with care)
 
 - **Version manager: `mise`**, not asdf. Asdf was migrated out. Go tools live in `mise.toml` `[tools]` as `go:<package>` so they reinstall on Go version bumps.

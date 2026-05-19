@@ -9,13 +9,13 @@ My macOS dotfiles, managed with [chezmoi](https://chezmoi.io).
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install chezmoi
 
-# 2. Pull and apply
-chezmoi init --apply git@github.com:claystation/mac-machine.git
+# 2. Pull and apply (public repo — no GitHub auth needed for the clone)
+chezmoi init --apply https://github.com/claystation/mac-machine.git
 ```
 
 The `init --apply` step runs the bootstrap scripts in this order:
 
-1. `run_once_before_generate-ssh-key.sh.tmpl` — interactively generates a passphrase-protected `ed25519` key at `~/.ssh/id_ed25519` if missing (skips silently otherwise)
+1. `run_once_before_generate-ssh-key.sh.tmpl` — interactively generates a passphrase-protected `ed25519` key at `~/.ssh/id_ed25519` if missing (skips silently otherwise); prints the public key for you to add to GitHub
 2. `run_once_before_install-homebrew.sh` — installs Homebrew (no-op if already present)
 3. `run_once_before_install-oh-my-zsh.sh` — installs oh-my-zsh (keeps the chezmoi-managed `.zshrc`)
 4. files written into `~/` (`.zshrc`, `.gitconfig`, `.config/{nvim,tmux,zsh}`, oxide theme)
